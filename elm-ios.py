@@ -146,6 +146,11 @@ def main():
 
     run_elm_make(elm_make_args)
 
+    # Assert that compiled elm code was output
+    if not os.path.exists(join_path(CWD, COMPILED_ELM_FNAME)):
+        print ("No compiled elm code found at {0}. Aborting.").format(join_path(CWD, COMPILED_ELM_FNAME))
+        raise SystemExit
+
     # Clean the build directory
     if os.path.isdir(BUILD_DIR):
         shutil.rmtree(BUILD_DIR)
